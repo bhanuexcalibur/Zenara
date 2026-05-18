@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenara Health x Bhanu Kumar &middot; Proof of Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:    #f7f5f0;
+  --bg2:   #f0ece4;
+  --bg3:   #e8e2d8;
+  --bg4:   #ddd6c8;
+  --bdr:   rgba(0,0,0,0.07);
+  --bmd:   rgba(0,0,0,0.13);
+  --blg:   rgba(0,0,0,0.22);
+  --t1:    #1a1612;
+  --t2:    #5a524a;
+  --t3:    #9a8f82;
+  --zen:   #1a7a5e;
+  --zendim:rgba(26,122,94,0.08);
+  --zenglo:rgba(26,122,94,0.16);
+  --zent:  #239970;
+  --sage:  #4a8c7a;
+  --warm:  #c97a2a;
+  --wdim:  rgba(201,122,42,0.09);
+  --wt:    #e0913a;
+  --red:   #c0392b;
+  --rddim: rgba(192,57,43,0.08);
+  --muted: #8a7d72;
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:62px;}
+body{
+  background:var(--bg);color:var(--t1);
+  font-family:'Sora',sans-serif;font-size:16px;
+  line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* READING PROGRESS */
+.rbar{
+  position:fixed;top:0;left:0;height:2.5px;z-index:999;
+  background:var(--zen);width:0%;transition:width 0.1s linear;
+}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(247,245,240,0.94);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--bdr);padding:0 5vw;
+}
+.nav-i{
+  max-width:1160px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;gap:16px;
+}
+.nav-logo{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--t1);letter-spacing:0.04em;white-space:nowrap;flex-shrink:0;
+}
+.nav-logo .sep{color:var(--t3);margin:0 8px;}
+.nav-logo .br{color:var(--zen);font-weight:500;}
+.nav-links{display:flex;gap:2px;flex-wrap:nowrap;}
+.np{
+  font-size:12px;font-weight:500;padding:5px 14px;
+  border-radius:100px;border:1px solid transparent;
+  color:var(--t2);background:transparent;
+  text-decoration:none;transition:all 0.14s;white-space:nowrap;
+}
+.np:hover{border-color:var(--bdr);color:var(--t1);}
+.np.cta{background:var(--zen);border-color:var(--zen);color:#fff;font-weight:600;}
+.np.cta:hover{opacity:0.85;}
+
+.hbg{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;background:none;border:none;padding:4px;flex-shrink:0;
+}
+.hbg span{
+  display:block;width:21px;height:1.5px;
+  background:var(--t1);border-radius:2px;
+  transition:transform 0.3s,opacity 0.3s;
+}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hbg.open span:nth-child(2){opacity:0;}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+.mob-menu{
+  display:none;position:fixed;inset:0;top:58px;
+  background:var(--bg);z-index:190;
+  flex-direction:column;padding:36px 5vw;gap:0;
+  border-top:1px solid var(--bdr);
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  display:block;font-size:20px;
+  font-family:'DM Serif Display',serif;font-style:italic;
+  color:var(--t1);text-decoration:none;
+  padding:18px 0;border-bottom:1px solid var(--bdr);
+}
+.mob-menu a:last-child{border-bottom:none;}
+.mob-menu a.cta-m{color:var(--zen);}
+
+@media(max-width:760px){
+  .nav-links{display:none;}
+  .hbg{display:flex;}
+}
+
+/* LAYOUT */
+.wrap{max-width:1160px;margin:0 auto;padding:0 5vw;}
+section{padding:88px 0;border-bottom:1px solid var(--bdr);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.52s ease,transform 0.52s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* COVER */
+.cover{
+  padding:104px 5vw 88px;max-width:1160px;margin:0 auto;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--bdr);
+}
+.cover-glow-a{
+  position:absolute;top:-120px;right:-60px;
+  width:600px;height:600px;
+  background:radial-gradient(circle,var(--zenglo) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cover-glow-b{
+  position:absolute;bottom:-80px;left:18%;
+  width:360px;height:360px;
+  background:radial-gradient(circle,var(--wdim) 0%,transparent 65%);
+  pointer-events:none;
+}
+.c-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:28px;display:block;
+}
+.c-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(46px,8vw,100px);
+  font-weight:400;line-height:0.94;letter-spacing:-0.01em;
+  color:var(--t1);margin-bottom:28px;position:relative;z-index:1;
+}
+.c-title em{font-style:italic;color:var(--zen);}
+.c-sub{
+  font-size:clamp(15px,1.7vw,17.5px);color:var(--t2);
+  line-height:1.85;max-width:600px;margin-bottom:44px;
+  font-weight:300;position:relative;z-index:1;
+}
+.c-sub strong{color:var(--t1);font-weight:500;}
+.c-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--zendim);border:1px solid rgba(26,122,94,0.2);
+  color:var(--zen);font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:8px 20px;border-radius:6px;margin-bottom:62px;
+  position:relative;z-index:1;
+}
+.pill-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--zen);animation:blink 2.4s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.c-footer{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-top:28px;border-top:1px solid var(--bdr);
+  flex-wrap:wrap;gap:20px;position:relative;z-index:1;
+}
+.c-info{font-size:13.5px;color:var(--t2);line-height:2;}
+.c-info strong{display:block;font-size:15px;color:var(--t1);font-weight:500;margin-bottom:2px;}
+.c-toc{display:flex;flex-direction:column;align-items:flex-end;gap:0;}
+.tl{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;color:var(--t3);line-height:2.6;
+  padding-right:14px;border-right:2px solid var(--zen);
+  text-decoration:none;letter-spacing:0.04em;
+  transition:color 0.13s;
+}
+.tl:hover{color:var(--t2);}
+
+@media(max-width:580px){
+  .cover{padding:72px 5vw 52px;}
+  .c-footer{flex-direction:column;align-items:flex-start;}
+  .c-toc{align-items:flex-start;}
+  .tl{border-right:none;border-left:2px solid var(--zen);padding-right:0;padding-left:14px;}
+}
+
+/* SECTION HEADER */
+.sec-ey{
+  display:flex;align-items:baseline;gap:18px;margin-bottom:52px;
+}
+.sec-num{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:var(--t3);letter-spacing:0.1em;text-transform:uppercase;flex-shrink:0;
+}
+.sec-nm{
+  font-family:'DM Serif Display',serif;font-style:italic;
+  font-size:clamp(26px,4vw,44px);color:var(--t1);
+}
+
+/* STAT ROW */
+.stat-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--bdr);
+  border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
+  margin-bottom:56px;
+}
+.stat{background:var(--bg2);padding:28px 22px;}
+.stat-val{
+  font-family:'DM Serif Display',serif;font-style:italic;
+  font-size:clamp(28px,4vw,46px);color:var(--zen);
+  line-height:1;margin-bottom:8px;
+}
+.stat-lab{font-size:13px;color:var(--t3);line-height:1.55;}
+@media(max-width:680px){.stat-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:380px){.stat-row{grid-template-columns:1fr;}}
+
+/* AUDIT SECTION */
+.audit-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.tbtn{
+  font-size:12.5px;font-weight:500;
+  padding:7px 18px;border-radius:100px;
+  border:1px solid var(--bdr);color:var(--t2);
+  background:transparent;cursor:pointer;transition:all 0.14s;
+  font-family:'Sora',sans-serif;
+}
+.tbtn:hover{border-color:var(--bmd);color:var(--t1);}
+.tbtn.on{background:var(--zen);border-color:var(--zen);color:#fff;font-weight:600;}
+
+.apanel{display:none;}
+.apanel.on{display:block;}
+
+.ablock{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;
+  overflow:hidden;margin-bottom:14px;
+}
+.ablock-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;border-bottom:1px solid var(--bdr);
+  flex-wrap:wrap;gap:10px;
+}
+.ablock-title{font-size:14px;font-weight:500;color:var(--t1);}
+.abadge{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 11px;border-radius:100px;
+}
+.abadge.gap{background:var(--rddim);color:var(--red);}
+.abadge.ok{background:var(--zendim);color:var(--zen);}
+.abadge.opp{background:var(--wdim);color:var(--warm);}
+.abadge.fix{background:rgba(74,140,122,0.1);color:var(--sage);}
+
+.arow{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--bdr);
+}
+.arow:last-child{border-bottom:none;}
+.acell{padding:18px 22px;font-size:14px;line-height:1.7;color:var(--t2);}
+.acell:first-child{border-right:1px solid var(--bdr);}
+.acell strong{
+  color:var(--t1);font-weight:500;display:block;
+  margin-bottom:4px;font-size:11px;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;text-transform:uppercase;
+}
+@media(max-width:640px){
+  .arow{grid-template-columns:1fr;}
+  .acell:first-child{border-right:none;border-bottom:1px solid var(--bdr);}
+}
+
+/* PERSONA TABS */
+.persona-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;
+}
+.ptab{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;
+  padding:20px;cursor:pointer;transition:all 0.15s;
+}
+.ptab:hover{border-color:var(--bmd);}
+.ptab.on{border-color:var(--zen);background:var(--zendim);}
+.ptab-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:8px;
+}
+.ptab.on .ptab-label{color:var(--zen);}
+.ptab-title{font-size:14px;font-weight:500;color:var(--t1);}
+.ptab-sub{font-size:13px;color:var(--t2);margin-top:4px;}
+@media(max-width:640px){.persona-grid{grid-template-columns:1fr;}}
+
+.p-out-wrap{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;
+  overflow:hidden;
+}
+.p-prompt{
+  padding:44px 32px;text-align:center;
+  color:var(--t3);font-size:14px;
+}
+.p-output{display:none;padding:36px 32px;}
+.p-otag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--zen);background:var(--zendim);
+  display:inline-block;padding:3px 12px;border-radius:4px;margin-bottom:18px;
+}
+.p-ohed{
+  font-family:'DM Serif Display',serif;font-size:clamp(20px,3vw,28px);
+  font-style:italic;color:var(--t1);line-height:1.25;margin-bottom:18px;
+}
+.p-obody{font-size:14.5px;color:var(--t2);line-height:1.8;}
+.p-obody strong{color:var(--t1);font-weight:500;}
+@media(max-width:580px){.p-output{padding:24px 20px;}.p-prompt{padding:32px 20px;}}
+
+/* GTM BRIEF */
+.brief-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--bdr);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
+}
+.bcard{background:var(--bg2);padding:32px 28px;}
+.bcard.full{grid-column:1/-1;}
+.bcard.accent{background:var(--bg3);}
+.bcard-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--zen);display:block;margin-bottom:14px;
+}
+.bcard h4{
+  font-family:'DM Serif Display',serif;font-style:italic;
+  font-size:clamp(17px,2.2vw,21px);color:var(--t1);
+  line-height:1.3;margin-bottom:12px;
+}
+.bcard p{font-size:14px;color:var(--t2);line-height:1.78;}
+.bcard p strong{color:var(--t1);font-weight:500;}
+@media(max-width:640px){
+  .brief-grid{grid-template-columns:1fr;}
+  .bcard.full{grid-column:1;}
+}
+
+/* COPY EXAMPLES */
+.cex{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;
+  overflow:hidden;margin-bottom:16px;
+}
+.cex-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid var(--bdr);
+  flex-wrap:wrap;gap:10px;
+}
+.cex-ch{font-size:13px;font-weight:500;color:var(--t1);}
+.cbadge{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 11px;border-radius:100px;
+}
+.cbadge.web{background:var(--zendim);color:var(--zen);}
+.cbadge.email{background:var(--wdim);color:var(--warm);}
+.cbadge.sales{background:rgba(74,140,122,0.1);color:var(--sage);}
+.cbadge.content{background:rgba(90,82,74,0.09);color:var(--t2);}
+
+.cex-body{padding:28px 24px;}
+.ched{
+  font-family:'DM Serif Display',serif;font-style:italic;
+  font-size:clamp(18px,2.5vw,24px);color:var(--t1);
+  line-height:1.3;margin-bottom:14px;
+}
+.ctxt{font-size:14px;color:var(--t2);line-height:1.82;margin-bottom:16px;}
+.cwhy{
+  background:var(--bg3);border-left:3px solid var(--zen);
+  padding:14px 18px;border-radius:0 6px 6px 0;
+  font-size:13px;color:var(--t2);line-height:1.75;
+}
+.cwhy strong{color:var(--t1);font-weight:500;}
+
+/* OTHER WORK */
+.wgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.wcard{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;
+  padding:24px 22px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:10px;
+  transition:border-color 0.14s,background 0.14s;
+  position:relative;
+}
+.wcard:hover{border-color:var(--bmd);background:var(--bg3);}
+.wcard-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--t3);
+}
+.wcard h4{font-size:15px;font-weight:500;color:var(--t1);line-height:1.4;}
+.wcard p{font-size:13.5px;color:var(--t2);line-height:1.7;flex:1;}
+.warr{color:var(--zen);font-size:16px;margin-top:4px;}
+@media(max-width:760px){.wgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.wgrid{grid-template-columns:1fr;}}
+
+/* SIGNATURE */
+.sig{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:52px 0;flex-wrap:wrap;gap:28px;
+}
+.sig-name{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(32px,5vw,52px);color:var(--t1);
+  line-height:1;margin-bottom:12px;
+}
+.sig-name span{font-style:italic;color:var(--zen);}
+.sig-det{font-size:13.5px;color:var(--t2);line-height:2;}
+.sig-det a{color:var(--t2);text-decoration:none;border-bottom:1px solid var(--bdr);transition:color 0.13s;}
+.sig-det a:hover{color:var(--zen);}
+.sig-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.sbtn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13.5px;font-weight:500;
+  padding:11px 22px;border-radius:100px;
+  text-decoration:none;transition:all 0.14s;
+}
+.sbtn.pri{background:var(--zen);color:#fff;}
+.sbtn.pri:hover{opacity:0.86;}
+.sbtn.ghost{border:1px solid var(--bdr);color:var(--t2);}
+.sbtn.ghost:hover{border-color:var(--bmd);color:var(--t1);}
+
+/* CONTEXT BOX */
+.context-box{
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;
+  padding:32px 28px;margin-bottom:44px;
+}
+.context-box p{font-size:15px;color:var(--t2);line-height:1.85;}
+.context-box p + p{margin-top:14px;}
+.context-box strong{color:var(--t1);font-weight:500;}
+
+/* ACCORDION */
+.acc-item{
+  border:1px solid var(--bdr);border-radius:10px;
+  overflow:hidden;margin-bottom:10px;background:var(--bg2);
+}
+.acc-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px;cursor:pointer;gap:12px;
+}
+.acc-head-text{font-size:14.5px;font-weight:500;color:var(--t1);}
+.acc-icon{
+  font-size:18px;color:var(--zen);flex-shrink:0;
+  transition:transform 0.22s;font-weight:300;line-height:1;
+}
+.acc-item.open .acc-icon{transform:rotate(45deg);}
+.acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.32s ease;
+}
+.acc-body-inner{
+  padding:0 22px 22px;
+  font-size:14px;color:var(--t2);line-height:1.8;
+}
+.acc-body-inner strong{color:var(--t1);font-weight:500;}
+
+/* NOTICE */
+.notice{
+  background:var(--zendim);border:1px solid rgba(26,122,94,0.18);
+  border-radius:8px;padding:12px 18px;
+  font-size:13px;color:var(--zen);margin-bottom:40px;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;
+}
+
+</style>
+</head>
+<body>
+
+<div class="rbar" id="rbar"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <div class="nav-logo">
+      <span class="br">Zenara Health</span>
+      <span class="sep">/</span>
+      Bhanu Kumar
+    </div>
+    <div class="nav-links">
+      <a href="#audit"    class="np">01 Messaging Audit</a>
+      <a href="#gtm"      class="np">02 GTM Brief</a>
+      <a href="#personas" class="np">03 Buyers</a>
+      <a href="#copy"     class="np">04 Copy</a>
+      <a href="#work"     class="np">05 Other Work</a>
+      <a href="mailto:bhanukumar0902@gmail.com" class="np cta">Get in touch</a>
+    </div>
+    <button class="hbg" id="hbg" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mob">
+  <a href="#audit"    onclick="closeMob()">01 Messaging Audit</a>
+  <a href="#gtm"      onclick="closeMob()">02 GTM Brief</a>
+  <a href="#personas" onclick="closeMob()">03 Buyers</a>
+  <a href="#copy"     onclick="closeMob()">04 Copy</a>
+  <a href="#work"     onclick="closeMob()">05 Other Work</a>
+  <a href="mailto:bhanukumar0902@gmail.com" class="cta-m" onclick="closeMob()">Get in touch</a>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-glow-a"></div>
+  <div class="cover-glow-b"></div>
+
+  <span class="c-eyebrow">Proof of Work &nbsp;&#183;&nbsp; Product Marketing</span>
+
+  <h1 class="c-title">
+    The psychiatrist<br>
+    shouldn't be<br>
+    <em>doing paperwork.</em>
+  </h1>
+
+  <p class="c-sub">
+    Zenara built ZenOS because its founder watched <strong>a decade of brilliant psychiatrists spend half their day on admin</strong> that had nothing to do with medicine. The product is ready. The question now is how many practices actually hear about it, trust it, and buy it. That's the marketing problem I'd own.
+  </p>
+
+  <div class="c-pill">
+    <span class="pill-dot"></span>
+    PMM Proof of Work &nbsp;&#183;&nbsp; Bhanu Kumar
+  </div>
+
+  <div class="c-footer">
+    <div class="c-info">
+      <strong>Bhanu Kumar</strong>
+      Product Marketing Manager<br>
+      <a href="mailto:bhanukumar0902@gmail.com">bhanukumar0902@gmail.com</a> &nbsp;&#183;&nbsp;
+      <a href="https://linkedin.com/in/bhanuexcalibur" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="c-toc">
+      <a href="#audit"    class="tl">01 &nbsp; Messaging Audit</a>
+      <a href="#gtm"      class="tl">02 &nbsp; GTM Brief</a>
+      <a href="#personas" class="tl">03 &nbsp; Buyer Personas</a>
+      <a href="#copy"     class="tl">04 &nbsp; Copy Examples</a>
+      <a href="#work"     class="tl">05 &nbsp; Other Relevant Work</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- 01 MESSAGING AUDIT -->
+<section id="audit">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 01</span>
+      <span class="sec-nm">Messaging Audit</span>
+    </div>
+
+    <div class="context-box reveal">
+      <p>Zenara's homepage opens with <strong>"A New Way to Practice Psychiatry. Built By a Psychiatrist, for Psychiatrists."</strong> That's credible. The founder's story, 20 years in practice, a decade of building better workflows from the inside, is genuinely compelling. But the current messaging leans heavily on founder narrative and not enough on the buyer's specific fear: that adopting another clinical technology tool will cost them time they don't have and still not solve the documentation problem.</p>
+      <p>The audit below is organized by what's working, what isn't, and what's being left on the table. I've looked at the homepage, the Assess product page, case studies, and the resources section. The tabs switch between those four areas.</p>
+    </div>
+
+    <div class="audit-tabs reveal">
+      <button class="tbtn on" onclick="swTab('home', this)">Homepage</button>
+      <button class="tbtn" onclick="swTab('assess', this)">Assess Product Page</button>
+      <button class="tbtn" onclick="swTab('proof', this)">Case Studies</button>
+      <button class="tbtn" onclick="swTab('resources', this)">Resources Section</button>
+    </div>
+
+    <!-- HOME -->
+    <div class="apanel on reveal" id="ap-home">
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Hero headline and founder framing</span>
+          <span class="abadge opp">Opportunity</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>"A New Way to Practice Psychiatry. Built by a Psychiatrist, for Psychiatrists." Followed by a founder's personal letter about what drove him to build it.</div>
+          <div class="acell"><strong>The gap</strong>The founder story builds trust but delays the answer to the buyer's first question: what does this actually do for my 4pm patient load? Psychiatrists are time-poor. The hero needs to answer the clinical problem in the first sentence, then earn the right to tell the origin story lower on the page.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">"More presence. More freedom. More life." subheadline</span>
+          <span class="abadge gap">Vague</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>The three-phrase subheadline under the main headline feels like a wellness tagline, not a psychiatric workflow tool.</div>
+          <div class="acell"><strong>The gap</strong>The psychiatrist buyer is skeptical. "More life" doesn't give them anything to evaluate. "Arrive at your first visit already knowing who's in the room" is the same idea, but concrete enough that a busy clinician can picture it and want it.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Stats: 8-10 diagnoses per patient vs 2.8 benchmark</span>
+          <span class="abadge ok">Strong</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>The clinical validation numbers are buried mid-page. 8-10 diagnoses identified per patient compared to the 2.8 standard of care. 50-75% higher remission rates with measurement-based care.</div>
+          <div class="acell"><strong>The fix</strong>These are the numbers that earn immediate attention from a clinician. They need to be above the fold, or at minimum at the very first scroll position, not discovered after reading a founding story. Pull them up. Let the outcome speak first.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">CTA: "Get Your Practice Checkup" vs "Start Free"</span>
+          <span class="abadge opp">Opportunity</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Two CTAs sit side by side: "Start using Assess (free through July 31st)" and "Get Your Practice Checkup." They're pointing at the same audience with different commitment levels but equal prominence.</div>
+          <div class="acell"><strong>The fix</strong>Primary CTA for cold traffic should be the free Assess offer, the lowest friction entry point, with a time boundary that creates urgency. "Practice Checkup" is a higher-touch, warmer ask. Make it secondary visually. Run these as an A/B test by traffic source once the campaign machine is running.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ASSESS -->
+    <div class="apanel" id="ap-assess">
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Opening positioning: "Most comprehensive mental health assessment"</span>
+          <span class="abadge gap">Unclear</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>"The most comprehensive mental health assessment." This is a quality claim without a reference point. Comprehensive compared to what? PHQ-9 and GAD-7? Manual intake? The EHR's built-in screener?</div>
+          <div class="acell"><strong>The fix</strong>Name the comparison explicitly. "A 20-minute self-report that surfaces 8-10 clinical findings, versus the 2.8 a standard evaluation typically catches. That gap is what changes treatment trajectory." Concrete, competitive, clinical.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Case studies: David, Miguel, Nadia</span>
+          <span class="abadge ok">Strong</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Three patient stories that show Assess finding things standard screening missed: loneliness misread as dementia, a supplement causing the symptom it was meant to treat, caffeine amplifying anxiety that wasn't anxiety disorder.</div>
+          <div class="acell"><strong>Opportunity</strong>These stories are the best marketing asset on the site. They should be the first thing on the Assess page, not a later scroll. Consider a fourth story from a practice management angle: how did the practice owner's time change, not just the patient outcome?</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Billing and CPT code section</span>
+          <span class="abadge opp">Opportunity</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>The page lists supported CPT codes (90791, 90792, 96138, etc.) in a bulleted list near the bottom with a compliance disclaimer.</div>
+          <div class="acell"><strong>The fix</strong>For a practice owner or practice manager, billable codes aren't a footnote, they're the business case. Turn the billing section into a mini ROI frame: "Assess supports documentation for psychiatric evaluations (90791/90792) and psychological testing codes. Based on typical reimbursement rates and our current clinical validation partnership, a 10-psychiatrist practice sees roughly [X] in captured billing per month." Make the CFO argument the clinician can hand to their billing team.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PROOF -->
+    <div class="apanel" id="ap-proof">
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Texas Center for Lifestyle Medicine reference</span>
+          <span class="abadge opp">Opportunity</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>A brief mention that TCLM's partnership with Zenara surfaced bipolar disorder missed for years, undisclosed trauma, and supplements causing the symptoms they were meant to treat.</div>
+          <div class="acell"><strong>The fix</strong>This is a named real-world clinical partnership that produced measurable outcomes. It needs its own case study page, not a paragraph on the homepage. A proper case study here (practice size, patient volume, what Assess changed, what the practice said afterward) would be a significant sales enablement asset for any partnership conversation with health systems.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">APA 2026 event presence</span>
+          <span class="abadge ok">Strong signal</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Zenara has a dedicated APA 2026 landing page. APA Annual Meeting is the single largest gathering of psychiatrists in the US.</div>
+          <div class="acell"><strong>Opportunity</strong>The APA presence needs pre-event content (who should come see us and why), an in-event asset (something demos can leave behind beyond a brochure), and a post-event follow-up sequence for leads collected. Three-part event marketing motion, not just a landing page.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RESOURCES -->
+    <div class="apanel" id="ap-resources">
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Deep-dive guides: CCM vs CoCM vs BHI</span>
+          <span class="abadge ok">Strong</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Zenara has produced clinical workflow guides, a CCM vs CoCM vs BHI comparison, an APCM playbook, and a guide for therapy practices adding psychiatric coverage. These are genuinely useful clinical resources.</div>
+          <div class="acell"><strong>Opportunity</strong>These guides are organic search gold for practice managers and clinical directors Googling "collaborative care model billing guide" or "how to add psychiatric coverage to therapy practice." They're not promoted anywhere on the homepage. A simple resource hub with email capture on each guide would build a warm list without running paid ads.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">ROI Calculator page</span>
+          <span class="abadge gap">Underutilized</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Zenara has an ROI Calculator page linked from the footer and resources nav. Good instinct. But it's buried.</div>
+          <div class="acell"><strong>The fix</strong>The ROI calculator should be linked directly from every product page and every case study. "See what this looks like for your practice size" is the natural next step after reading a clinical case study. The calculator is doing conversion work if it's findable; right now it's mostly just existing.</div>
+        </div>
+      </div>
+
+      <div class="ablock">
+        <div class="ablock-head">
+          <span class="ablock-title">Ritual Bell newsletter</span>
+          <span class="abadge opp">Opportunity</span>
+        </div>
+        <div class="arow">
+          <div class="acell"><strong>What's there now</strong>Zenara has a newsletter called Ritual Bell listed in the resources nav. The concept (short clinical reads between patients) matches exactly how a psychiatrist consumes content during a day.</div>
+          <div class="acell"><strong>Opportunity</strong>Ritual Bell could be a significant top-of-funnel asset if positioned correctly. "5 minutes of clinical relevance, between patients" is a subscriber pitch. The current landing experience needs an explicit value prop and a clear sample edition. If the content is good, this compounds.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 02 GTM BRIEF -->
+<section id="gtm">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 02</span>
+      <span class="sec-nm">GTM Brief: First 90 Days</span>
+    </div>
+
+    <p style="font-size:15px;color:var(--t2);line-height:1.85;max-width:720px;margin-bottom:44px;" class="reveal">
+      Zenara has something most early-stage health SaaS companies don't: a founder who practices medicine, clinical validation data, and real case studies with named findings. The GTM problem isn't a product problem, it's a distribution and trust problem. Here's how I'd structure the first 90 days to build both.
+    </p>
+
+    <div class="brief-grid reveal">
+
+      <div class="bcard accent full">
+        <span class="bcard-tag">The Core Insight</span>
+        <h4>Psychiatrists don't buy software. They adopt what colleagues trust and what doesn't add friction to a day that's already out of control.</h4>
+        <p>The purchasing motion for a clinical tool like Zenara is not a software buying motion. It's a professional trust motion. A psychiatrist will not schedule a demo because they saw a LinkedIn ad. They'll consider it because someone in their peer network mentioned it worked, because they heard the founder speak at APA, or because one of the guides Zenara published answered a billing question they'd been stuck on. The GTM strategy has to be built around earning professional trust, not generating impressions. That means conferences, peer networks, clinical content, and a referral motion, not broad paid channels in month one.</p>
+      </div>
+
+      <div class="bcard">
+        <span class="bcard-tag">ICP Priority</span>
+        <h4>Who we're going after first</h4>
+        <p><strong>Primary:</strong> Independent psychiatry practice owners and group practice medical directors (5-25 clinician practices). They have budget authority, they feel the documentation pain most acutely, and they're evaluating tools without a large procurement process. <strong>Secondary:</strong> Practice managers and operations leads at behavioral health groups. They're often the ones who bring a tool to the clinician to approve. <strong>Not yet:</strong> Health systems and enterprise. The sales cycle is too long for the current stage.</p>
+      </div>
+
+      <div class="bcard">
+        <span class="bcard-tag">Month 1</span>
+        <h4>Build the trust assets the sales team doesn't have yet</h4>
+        <p>Messaging framework. Positioning doc by buyer type. Complete the TCLM case study. Build a proper Assess one-pager that a practice manager can hand to their medical director. Rewrite the homepage hero to lead with clinical outcome, not founder story. Establish the content calendar and define Ritual Bell's voice and frequency. None of this is visible externally yet, but without it, nothing else converts.</p>
+      </div>
+
+      <div class="bcard">
+        <span class="bcard-tag">Month 2</span>
+        <h4>APA 2026 as the first major demand moment</h4>
+        <p>Pre-event: target list of practices attending, outreach sequence, content drop tied to APA themes (measurement-based care, documentation burden). At event: booth strategy focused on the Assess demo, not the full ZenOS story. Post-event: 48-hour follow-up sequence for every lead. One LinkedIn thought leadership post from the founder during the conference. APA is where the ICP is. It's the highest-leverage demand moment of the year.</p>
+      </div>
+
+      <div class="bcard">
+        <span class="bcard-tag">Month 3</span>
+        <h4>The content engine that compounds</h4>
+        <p>Launch a structured content calendar: two Ritual Bell editions per month, one long-form guide per month targeting practice management search queries, one case study every 6 weeks. Set up email capture on every guide with a 3-email nurture sequence. Track which content converts to demo requests. The clinical guides Zenara has already written are the foundation. The work is promoting them properly and measuring what actually generates pipeline.</p>
+      </div>
+
+      <div class="bcard">
+        <span class="bcard-tag">Measurement</span>
+        <h4>How we'll know if it's working</h4>
+        <p>Week 4: messaging framework approved by sales and CEO. Month 2: APA leads entered into CRM with follow-up tracked. Month 3: 3 pieces of content live with traffic and conversion data. Ongoing: cost per demo request by channel, demo-to-trial conversion, trial-to-paid conversion. The channels that produce qualified demos get more budget. The ones that produce impressions but not conversations get cut.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 03 BUYER PERSONAS -->
+<section id="personas">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 03</span>
+      <span class="sec-nm">Buyer Personas</span>
+    </div>
+
+    <p style="font-size:15px;color:var(--t2);line-height:1.85;max-width:680px;margin-bottom:36px;" class="reveal">
+      Zenara has at least three people in every sale, each of whom cares about something completely different. The psychiatrist wants better patient care. The practice owner wants a sustainable business. The practice manager wants less administrative chaos. The same product story doesn't work for all three. Pick a buyer below.
+    </p>
+
+    <div class="persona-grid reveal">
+      <div class="ptab" onclick="swBuyer('psych', this)">
+        <div class="ptab-label">Buyer 01</div>
+        <div class="ptab-title">The Psychiatrist</div>
+        <div class="ptab-sub">Clinical decision-maker</div>
+      </div>
+      <div class="ptab" onclick="swBuyer('owner', this)">
+        <div class="ptab-label">Buyer 02</div>
+        <div class="ptab-title">Practice Owner / MD Director</div>
+        <div class="ptab-sub">Business and clinical authority</div>
+      </div>
+      <div class="ptab" onclick="swBuyer('manager', this)">
+        <div class="ptab-label">Buyer 03</div>
+        <div class="ptab-title">Practice Manager / Ops Lead</div>
+        <div class="ptab-sub">The person who finds the tool first</div>
+      </div>
+    </div>
+
+    <div class="p-out-wrap reveal">
+      <div class="p-prompt" id="p-prompt">Select a buyer above to see how the message needs to shift.</div>
+      <div class="p-output" id="p-output">
+        <span class="p-otag" id="p-tag"></span>
+        <div class="p-ohed" id="p-hed"></div>
+        <div class="p-obody" id="p-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 04 COPY EXAMPLES -->
+<section id="copy">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 04</span>
+      <span class="sec-nm">Copy Examples</span>
+    </div>
+
+    <p style="font-size:15px;color:var(--t2);line-height:1.85;max-width:680px;margin-bottom:44px;" class="reveal">
+      Four pieces across the formats the Zenara marketing function would own most in the first 90 days. Each one is written for a specific job, not to demonstrate range.
+    </p>
+
+    <!-- COPY 1 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Website &nbsp;&#183;&nbsp; Homepage hero rewrite</span>
+        <span class="cbadge web">Web copy</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">Your first visit used to start with forty minutes of fact-finding. Now it starts with medicine.</div>
+        <div class="ctxt">Zenara's assessment tool does the intake before you walk in. Patient history, symptom patterns, social determinants, medication interactions: organized and surfaced before the first word. So the 50-minute hour is actually spent doing psychiatry, not gathering it.<br><br>In clinical validation across 400 patients, Assess identified 8 to 10 meaningful findings per patient. The standard of care catches 2.8. The difference often changes the treatment entirely.</div>
+        <div class="cwhy"><strong>Why this works:</strong> The current hero leads with "A New Way to Practice Psychiatry," which is true but doesn't answer the psychiatrist's immediate question: what changes for me tomorrow? This version opens with the specific, felt experience of a first visit eaten by intake, then immediately names what changes and how much. The validation stat at the end earns attention precisely because it comes after a concrete image, not as a standalone claim at the top of the page.</div>
+      </div>
+    </div>
+
+    <!-- COPY 2 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">APA 2026 &nbsp;&#183;&nbsp; Conference outreach email (psychiatry group practice owner)</span>
+        <span class="cbadge email">Email</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">Subject: One thing we want to show you at APA this year</div>
+        <div class="ctxt">Hi [Name],<br><br>We'll be at APA 2026 and I wanted to reach out ahead of time rather than trying to catch you between sessions.<br><br>Zenara is a clinical assessment and care coordination platform built by a practicing psychiatrist. In a partnership with Texas Center for Lifestyle Medicine, our assessment tool identified bipolar disorder that had been missed for years, caught undisclosed trauma, and flagged a supplement causing the symptom it was supposed to treat. Across 400 patients in clinical validation, it surfaces 8-10 meaningful findings per assessment compared to the 2.8 typically caught in standard evaluations.<br><br>We're not a documentation shortcut or another EHR plugin. The system is designed to extend what a psychiatrist can see before the visit even starts, so the 50-minute hour is actually spent on medicine.<br><br>If you're at APA and this sounds worth 15 minutes, I'd love to show you a live assessment run. Would Tuesday afternoon work?</div>
+        <div class="cwhy"><strong>Why this works:</strong> Conference outreach emails fail because they lead with "excited to connect" and then describe a product in marketing language. This version acknowledges the context (APA, busy), leads with a specific real-world finding that a clinician would find genuinely alarming, backs it with a concrete stat, then draws a clear distinction from the two things a psychiatrist is most tired of: documentation tools and EHR plugins. The ask is specific and low-friction. "Tuesday afternoon" is more human than "a time that works for you."</div>
+      </div>
+    </div>
+
+    <!-- COPY 3 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Sales Enablement &nbsp;&#183;&nbsp; Objection card (when they say "we already use an EHR with intake forms")</span>
+        <span class="cbadge sales">Enablement</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">When the prospect says: "Our EHR already handles intake."</div>
+        <div class="ctxt">Don't counter the EHR. Ask what the intake actually surfaces.<br><br>"That makes sense, and Zenara isn't replacing your EHR. The question worth asking is: what does your current intake actually tell you before you walk in? Most EHR intake forms collect demographics and a chief complaint. They don't surface supplement interactions, social isolation patterns, PHQ-9 trends across visits, or the kind of findings that change a diagnosis. In our clinical validation, standard assessments caught an average of 2.8 meaningful findings per patient. Zenara's assessment caught 8 to 10. That gap is where treatment trajectories get changed, or missed. I can show you what a completed Zenara assessment looks like for a real patient profile in about 10 minutes. Want to see what it actually pulls?"</div>
+        <div class="cwhy"><strong>Why this works:</strong> The instinct is to defend against the EHR comparison by listing features. That positions Zenara as an EHR competitor, which loses the frame entirely. This card reframes the conversation around what intake actually produces, clinically, and then uses the 2.8 vs 8-10 stat to make the gap concrete rather than argued. The offer at the end ("see what it actually pulls") shifts from debate to demonstration, which is where the product wins.</div>
+      </div>
+    </div>
+
+    <!-- COPY 4 -->
+    <div class="cex reveal">
+      <div class="cex-top">
+        <span class="cex-ch">Content &nbsp;&#183;&nbsp; Ritual Bell edition (clinician audience, between patients)</span>
+        <span class="cbadge content">Newsletter</span>
+      </div>
+      <div class="cex-body">
+        <div class="ched">The supplement that was causing the symptom it was supposed to treat.</div>
+        <div class="ctxt">Miguel was 18. PHQ-9 of 4. GAD-7 of 2. By every standard screen, he was fine.<br><br>He wasn't fine. He had debilitating symptoms that came and went, completely invisible to tools that average across time. What Zenara's assessment found: a supplement he was taking for brain fog had brain fog as a documented side effect. The treatment was causing the problem.<br><br>Standard intake didn't ask about supplements in enough depth to catch it. A rushed first visit might have started him on an SSRI he didn't need.<br><br>We built Assess to find what standard care misses. Not because clinicians aren't looking, but because the tools we hand them weren't designed to look at the whole picture. This is one case. There are hundreds more like it in every practice.<br><br>If you've got a patient whose presentation doesn't quite add up, we'd be happy to run a sample Assess and show you what it surfaces. No sales pitch, just the output.</div>
+        <div class="cwhy"><strong>Why this works:</strong> Ritual Bell should read the way a good clinical colleague talks, not the way a SaaS company blogs. This edition leads with a specific, surprising patient story that a psychiatrist will recognize the shape of from their own practice. The product is present but secondary to the clinical insight. The CTA at the end ("no sales pitch, just the output") reduces friction by naming and dismissing the thing that makes a clinician hesitate to engage with a vendor.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 05 OTHER RELEVANT WORK -->
+<section id="work" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="sec-ey reveal">
+      <span class="sec-num">Part 05</span>
+      <span class="sec-nm">Other Relevant Work</span>
+    </div>
+    <div class="wgrid reveal">
+
+      <a href="https://bhanuexcalibur.github.io/Veeva/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Healthcare SaaS / Clinical</div>
+        <h4>Veeva Systems: Proof of Work</h4>
+        <p>PMM PoW for a clinical data and life sciences platform. The challenge maps directly: marketing highly technical healthcare software to clinical and operational buyers who don't trust vendors until they trust the product. Covers messaging, buyer personas, and sales enablement.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+      <a href="https://bhanuexcalibur.github.io/Continuous/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; AI-native SaaS</div>
+        <h4>Continuous: AI Product PoW</h4>
+        <p>Proof of Work for an AI-native B2B SaaS product. Covers the core challenge Zenara faces: translating AI capabilities into outcomes that a skeptical professional buyer actually cares about. The framing strategy here is the same playbook I'd use for Zenara's clinical audience.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+      <a href="https://bhanuexcalibur.github.io/Boundless-PoW/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">B2B messaging &nbsp;&#183;&nbsp; Multi-buyer</div>
+        <h4>Boundless: Messaging Audit</h4>
+        <p>Three-buyer messaging rewrite for a compliance-heavy B2B product. The structural challenge is identical to Zenara: one product, three stakeholders (psychiatrist, practice owner, practice manager) who each need a completely different emotional register and proof point.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+      <a href="https://bhanuexcalibur.github.io/Canonical/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Technical B2B / Trust-heavy</div>
+        <h4>Canonical: Ubuntu Core PoW</h4>
+        <p>Full PMM PoW for a complex infrastructure product sold to skeptical technical buyers. The trust-building challenge is the same as healthcare: the audience won't adopt something that doesn't come recommended by someone they already respect. Messaging and GTM built around that constraint.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+      <a href="https://bhanuexcalibur.github.io/RelayFi_PoW/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; B2B SaaS, SMB</div>
+        <h4>Relay Financial: Proof of Work</h4>
+        <p>Full PMM PoW covering messaging audit, GTM brief, buyer personas, and copy for three different customer segments. Closest in scope and format to this page. Shows the end-to-end methodology I bring to a new product marketing challenge.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+      <a href="https://bhanuexcalibur.github.io/Lifesight/" class="wcard" target="_blank" rel="noopener">
+        <div class="wcard-tag">Full PoW &nbsp;&#183;&nbsp; Data / Analytics SaaS</div>
+        <h4>Lifesight: Proof of Work</h4>
+        <p>PMM PoW for a data platform where the technical depth of the product is far ahead of how most buyers understand the category. The translation challenge, from technical capability to outcome language that earns trust, is exactly the challenge Zenara faces explaining ZenOS to practice managers who aren't clinicians.</p>
+        <span class="warr">&#8594;</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- SIGNATURE -->
+<div class="wrap">
+  <div class="sig reveal">
+    <div>
+      <div class="sig-name">Bhanu <span>Kumar</span></div>
+      <div class="sig-det">
+        <a href="mailto:bhanukumar0902@gmail.com">bhanukumar0902@gmail.com</a><br>
+        <a href="https://linkedin.com/in/bhanuexcalibur" target="_blank" rel="noopener">linkedin.com/in/bhanuexcalibur</a> &nbsp;&#183;&nbsp;
+        <a href="https://x.com/excaliburbhanu" target="_blank" rel="noopener">@excaliburbhanu</a>
+      </div>
+    </div>
+    <div class="sig-btns">
+      <a class="sbtn pri" href="mailto:bhanukumar0902@gmail.com">
+        Get in touch
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7.5 3.5l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="sbtn ghost" href="https://drive.google.com/file/d/1i5KnN_hoqTVLRUPdnNggcrO6nPyO5f0g/view" target="_blank" rel="noopener">Full resume &#8594;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* NAV toggle */
+function toggleMob(){
+  document.getElementById('mob').classList.toggle('open');
+  document.getElementById('hbg').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mob').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
+}
+
+/* Reading bar */
+window.addEventListener('scroll',function(){
+  var s=document.documentElement;
+  var p=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('rbar').style.width=p+'%';
+});
+
+/* Scroll reveal */
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+}
+
+/* Audit tabs */
+function swTab(id, btn){
+  document.querySelectorAll('.apanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById('ap-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+/* Buyer personas */
+var buyers={
+  psych:{
+    tag:'Buyer 01 / The Psychiatrist',
+    hed:'You trained for the relationship, not the paperwork.',
+    body:`The psychiatrist has seen what happens when the system optimizes for throughput over care. 40-minute slots for patients who need 90. Intake forms that ask about symptoms but not supplements, sleep, social connection, or the fifty other things that actually explain why the PHQ-9 is a 14 this week.<br><br>The message for this buyer is clinical, not operational. Don't talk about ROI in the first conversation. Talk about David, the 72-year-old who looked like early dementia and turned out to be lonely. Talk about Miguel, whose supplement was causing the symptom it was supposed to treat. Talk about what it feels like to walk into a first visit already knowing who's in the room.<br><br><strong>What they're afraid of:</strong> Another tool that adds friction instead of removing it. Another dashboard they'll stop checking after week three. <strong>What earns trust:</strong> A founder who practices medicine. Clinical validation numbers. A peer who's already using it. The demo that shows the output, not the interface.`
+  },
+  owner:{
+    tag:'Buyer 02 / Practice Owner or Medical Director',
+    hed:'You need excellent care and a business that survives. Right now those feel like two different things.',
+    body:`The practice owner is both the clinical voice and the financial one. They feel the documentation problem in two ways: as a clinician who wishes the visits were more clinical, and as a business owner watching hours of licensed time disappear into admin that insurance won't pay for.<br><br>This buyer needs the clinical story and the business case in the same conversation. Lead with the clinical outcome (the Assess findings, the case studies, the measurement-based care evidence), then translate it: "Practices using routine measurement see 50-75% higher remission rates. That's also a retention argument, a referral network argument, and a compliance argument." Then move to the billing: Assess supports CPT documentation for psychiatric evaluations. "A 10-psychiatrist practice typically sees [X] in captured billing per month that was previously going undocumented."<br><br><strong>What they're afraid of:</strong> Implementation eating the team's time during an already full quarter. <strong>What earns trust:</strong> The TCLM case study. A named practice they can call. A clear deployment timeline with realistic expectations.`
+  },
+  manager:{
+    tag:'Buyer 03 / Practice Manager or Ops Lead',
+    hed:'You\'re the one who actually runs the intake process. You already know what\'s broken.',
+    body:`The practice manager often finds Zenara before the clinician does. They're searching for "psychiatric intake optimization" or "collaborative care model billing guide" because they're the ones dealing with the backlogs, the incomplete intake forms, and the scheduling chaos that comes from not knowing a patient's complexity before they arrive.<br><br>This buyer doesn't need a clinical pitch. They need to understand the workflow change and trust that it won't break what's already working. The message: "Assess runs before the appointment. The patient completes it on their device. The output goes into your workflow without touching your EHR. The psychiatrist sees a structured prep pack, not a stack of PDFs." Show them the intake sequence. Show them the time it saves per patient. Show them the team doesn't need to learn a new system.<br><br><strong>What they're afraid of:</strong> Being the person who recommended a tool that the clinical team rejected. <strong>What earns trust:</strong> A clear demo of the actual workflow. Specifics on EHR compatibility. A conversation with someone who's already implemented it.`
+  }
+};
+
+function swBuyer(id, el){
+  document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('on');});
+  el.classList.add('on');
+  var b=buyers[id];
+  document.getElementById('p-tag').textContent=b.tag;
+  document.getElementById('p-hed').textContent=b.hed;
+  document.getElementById('p-body').innerHTML=b.body;
+  document.getElementById('p-prompt').style.display='none';
+  document.getElementById('p-output').style.display='block';
+}
+</script>
+</body>
+</html>
